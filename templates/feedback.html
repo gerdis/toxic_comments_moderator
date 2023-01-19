@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<header>
+    <title>Feedback Message
+    </title>
+    <link rel="stylesheet" href="/visuals/css/main.css">    
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+</header>
+
+<body>
+    <div class="oldcontainer">
+        {% block content %}
+        {{input|safe}}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>John Doe</title>
+  <link rel="stylesheet" href="/static/css/main.css"> 
+</head>
+
+<body>
+  <div class="content">
+  <div class="personal">  
+    <img src="/static/images/icons8_customer.png" alt="icon depicting a person" style="width:200px;height:200px;">
+	<h3>John Doe, Machine Learning Enthusiast</h3>
+	<ul>
+         <li>some info about John</li>
+         <li>some more info</li>
+         <li>yet more info</li>
+    </ul>
+  </div>
+  <div class="container">
+    <h1>
+      <center>Send John a message (AI moderated)</center>
+    </h1>
+
+    {% block content %}
+	{% for message in form.subject.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+	
+    {% for message in form.mess.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}        
+
+    <form method=post>
+	
+	  {{ form.yourmail.label }}
+      {{ form.yourmail }}
+	
+	  {{ form.subject.label }}
+      {{ form.subject }}
+	  
+      {{ form.mess.label }} 
+      {{ form.mess }}
+      
+      {{ form.submit }}
+    </form>
+    {% endblock %}
+
+  </div>
+  </div>
+</body>
+
+</html>
