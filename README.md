@@ -1,12 +1,12 @@
-# A simple web application demonstrating how a sentiment analysis model can be deployed as an email moderation/filtering system.
+A simple web application demonstrating how a sentiment analysis model can be deployed as an email moderation/filtering system.
 
 # Background
 
-The model, a Convolutional Neural Network, was trained on the ***toxic comments*** dataset using Google's pre-trained
+The model, a Convolutional Neural Network, was trained on the *toxic comments* dataset using Google's pre-trained
 300-dimensional vector embeddings. 
 During training, a Keras generator was used to generate batches so that no padding was needed. 
 
-The code for the model and cross validation results can be found in ***ToxicCommentsProjectCrossVal.ipynb*** 
+The code for the model and cross validation results can be found in *ToxicCommentsProjectCrossVal.ipynb* 
 (I might re-train the model using a slightly different architecture).
 
 # Instructions for testing 
@@ -18,24 +18,24 @@ although I'm not sure if it's the same version that I used for training
 
 The following Python packages are required:
 
-numpy
-keras (to load pre-trained model)
-tensorflow (keras backend)
-gensim (to map words to google's pre-trained vectors)
-wtforms (to build the form for the message)
-flask (to build web applications in Python)
-flask-mail (email extension)
-os + python-dotenv (if you'd like to store your email credentials as environment variables)
+- numpy
+- keras (to load pre-trained model)
+- tensorflow (keras backend)
+- gensim (to map words to google's pre-trained vectors)
+- wtforms (to build the form for the message)
+- flask (to build web applications in Python)
+- flask-mail (email extension)
+- os + python-dotenv (if you'd like to store your email credentials as environment variables)
 
 The next steps are as follows:
 
 1. clone the repository
-2. save the binary file with the google vectors in the ***model_resources*** folder
+2. save the binary file with the google vectors in the *model_resources* folder
 3. replace the email configuration details/credentials in webapp.py with your own 
 
 If you'd like to use [Mailtrap](https://mailtrap.io/email-sandbox/) for email testing (as I did), 
 you can find an instruction on how to get your configuration details and credentials 
-[here] (https://mailtrap.io/blog/flask-email-sending/).
+[here](https://mailtrap.io/blog/flask-email-sending/).
 
 Then run 
 
@@ -50,8 +50,13 @@ The application will also inform you which types/severity levels of "toxicity"
 (e.g. "general toxicity" for label ***toxic***) were detected.
 Otherwise, you should receive a "Thank you for your message", and find the email in your inbox. 
 
-# Photo Credits
+# Credits
 
-- [Customer icon by Icons8] (https://icons8.com/icon/14736/customer)
+[This tutorial by Will Koehrsen](https://towardsdatascience.com/deploying-a-keras-deep-learning-model-as-a-web-application-in-p-fc0f2354a7ff) 
+helped me greatly in getting the app up and running.
+
+## Photo credits
+
+- [Customer icon by Icons8](https://icons8.com/icon/14736/customer)
 
 - website background: photo by Steve Johnson
