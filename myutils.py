@@ -41,20 +41,19 @@ def single_prediction(embedding, model):
     
 def give_feedback(prediction, comment):
 
-    toxines = {0: 'general toxicity', 1: 'severe_toxicity', 
+    toxines = {0: 'general toxicity', 1: 'severe toxicity', 
                2: 'obscenity', 3: 'threat(s)', 
-               4: 'insult(s)', 5: 'identity_hate'}             
+               4: 'insult(s)', 5: 'identity hate'}             
         
     html = ''
 
     if not np.any(prediction):
         reply = "Thank you for your message!"
         html = addContent(html, feedback(reply))
-    else:                
-        detected = [' '.join(toxines[idx].split('_')) for idx, p in enumerate(prediction) if p == True]
-        found = ", ".join(detected)          
+    else:              
+        detected = ", ".join([toxines[idx] for idx, p in enumerate(prediction) if p == True])
         reply = f"Your message could not be sent due to possible violations of our community guidelines. " \
-                f"The following violations were detected: {found}"
+                f"The following violations were detected: {detected}"
         html = addContent(html, feedback(reply, violation=True))
     
     return f'<div>{html}</div>'
@@ -64,10 +63,10 @@ def feedback(text, violation=False):
     """Create HTML text box"""
     
     if violation:
-        raw_html = '<div style="border-bottom:1px inset black;border-top:1px inset black;padding:8px;font-size: 28px;color:red;">' + str(
+        raw_html = '<div style="font-size: 28px;color:red;">' + str(
             text) + '</div>'    
     else:
-        raw_html = '<div style="border-bottom:1px inset black;border-top:1px inset black;padding:8px;font-size: 28px;">' + str(
+        raw_html = '<div style="font-size: 28px;">' + str(
             text) + '</div>'
     return raw_html
 
