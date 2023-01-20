@@ -41,6 +41,11 @@ def single_prediction(embedding, model):
     
 def give_feedback(prediction, comment):
 
+    """
+    generate html with reply depending on 
+    identified label(s) in prediction
+    """
+
     toxines = {0: 'general toxicity', 1: 'severe toxicity', 
                2: 'obscenity', 3: 'threat(s)', 
                4: 'insult(s)', 5: 'identity hate'}             
@@ -60,7 +65,11 @@ def give_feedback(prediction, comment):
  
 
 def feedback(text, violation=False):
-    """Create HTML text box"""
+    
+    """Style HTML for feedback
+    according to presence of 
+    violation(s)
+    """
     
     if violation:
         raw_html = '<div style="font-size: 28px;color:red;">' + str(
