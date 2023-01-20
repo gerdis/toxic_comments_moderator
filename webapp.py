@@ -1,5 +1,6 @@
 import numpy as np
 import os
+import re
 from dotenv import load_dotenv
 from myutils import preprocess, embed, single_prediction, give_feedback
 from keras.models import load_model
@@ -25,10 +26,12 @@ mail = Mail(app)
 class ReusableForm(Form):
     """User entry form"""
     yourmail = StringField("Your email: ", validators=[
-                     validators.InputRequired()])
+                     validators.InputRequired(),
+                     validators.regexp(r"^[A-Za-z0-9]{2,}([_.-][A-Za-z0-9]+)?@[-a-z0-9._]{2,}.[a-z]+")])
     subject = StringField("Subject: ", validators=[
                      validators.InputRequired()])    
-    mess = TextAreaField("Your message: ", validators=[validators.InputRequired()])
+    mess = TextAreaField("Your message: ", validators=[
+                     validators.InputRequired()])
                         
     submit = SubmitField("Submit")
 
