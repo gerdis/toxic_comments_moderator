@@ -6,7 +6,7 @@ The model, a Convolutional Neural Network, was trained on the *toxic comments* d
 300-dimensional vector embeddings. 
 During training, a Keras generator was used to generate batches so that no padding was needed. 
 
-The code for the model and cross validation results can be found in *ToxicCommentsProjectCrossVal.ipynb* 
+The code for the model and cross validation results can be found in *model_resources/ToxicCommentsProjectCrossVal.ipynb* 
 (I might re-train the model using a slightly different architecture).
 
 # Instructions for testing 
@@ -47,7 +47,7 @@ and didn't spend much time fine-tuning the CSS, so the design might not look as 
 After opening the link, simply enter an email address, a subject and a message, and click "submit". 
 If your message is classified as "toxic", you'll receive a notification that the message could not be sent. 
 The application will also inform you which types/severity levels of "toxicity" 
-(e.g. "general toxicity" for label ***toxic***) were detected.
+(e.g. "general toxicity" for label *toxic*) were detected.
 Otherwise, you should receive a "Thank you for your message", and find the email in your inbox. 
 
 # Credits
