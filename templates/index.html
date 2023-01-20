@@ -23,6 +23,10 @@
     </h1>
 
     {% block content %}
+	{% for message in form.yourmail.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+	
 	{% for message in form.subject.errors %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
