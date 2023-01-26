@@ -1,6 +1,5 @@
 import numpy as np
 import random
-import json
 import re
 from gensim.models import word2vec, KeyedVectors
 import nltk
