@@ -18,8 +18,7 @@ def prepare(comment):
   
 def embed(comment, vec=googlevecs):
     
-    wordnet_lemmatizer = WordNetLemmatizer()
-    #splitcomment = comment.split()
+    wordnet_lemmatizer = WordNetLemmatizer()    
     tk = TweetTokenizer()
     splitcomment = tk.tokenize(comment)
     commentlist = []
