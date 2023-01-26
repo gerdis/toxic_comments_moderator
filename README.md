@@ -19,6 +19,7 @@ although I'm not sure if it's the same version that I used for training
 The following Python packages are required:
 
 - numpy
+- nltk (for natural language processing)
 - keras (to load pre-trained model)
 - tensorflow (keras backend)
 - gensim (to map words to google's pre-trained vectors)
@@ -48,7 +49,10 @@ After opening the link, simply enter an email address, a subject and a message, 
 If your message is classified as "toxic", you'll receive a notification that the message could not be sent. 
 The application will also inform you which types/severity levels of "toxicity" 
 (e.g. "general toxicity" for label *toxic*) were detected.
-Otherwise, you should receive a "Thank you for your message", and find the email in your inbox. 
+Otherwise, you should receive a notification that your message was sent, and find the email in your inbox.
+
+If you need to get a lot of "toxicity" out of your system, feel free to send John multiple nasty messages - however, 
+you shouldn't be able to send more than 3. 
 
 # Credits
 
