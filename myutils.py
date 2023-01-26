@@ -4,12 +4,13 @@ import json
 import re
 from gensim.models import word2vec, KeyedVectors
 import nltk
+from nltk.tokenize import TweetTokenizer
 from nltk.stem import WordNetLemmatizer
 
 path = 'model_resources/GoogleNews-vectors-negative300.bin'
 googlevecs = KeyedVectors.load_word2vec_format(path, binary=True) 
 
-def preprocess(comment):
+def prepare(comment):
     
     cleaned_comment = re.sub("[^a-zA-Z']", ' ', comment.lower())   
     return cleaned_comment        
@@ -18,7 +19,9 @@ def preprocess(comment):
 def embed(comment, vec=googlevecs):
     
     wordnet_lemmatizer = WordNetLemmatizer()
-    splitcomment = comment.split()
+    #splitcomment = comment.split()
+    tk = TweetTokenizer()
+    splitcomment = tk.tokenize(comment)
     commentlist = []
     
     verbs_lemmatized = [wordnet_lemmatizer.lemmatize(word, pos='v') for word in splitcomment]
@@ -48,41 +51,14 @@ def give_feedback(prediction, comment):
 
     toxines = {0: 'general toxicity', 1: 'severe toxicity', 
                2: 'obscenity', 3: 'threat(s)', 
-               4: 'insult(s)', 5: 'identity hate'}             
-        
-    html = ''
-
+               4: 'insult(s)', 5: 'identity hate'}          
+      
     if not np.any(prediction):
-        reply = "Thank you for your message!"
-        html = addContent(html, feedback(reply))
+        reply = "Thank you for your message!"        
     else:              
         detected = ", ".join([toxines[idx] for idx, p in enumerate(prediction) if p == True])
         reply = f"Your message could not be sent due to possible violations of our community guidelines. " \
-                f"The following violations were detected: {detected}"
-        html = addContent(html, feedback(reply, violation=True))
+                f"The following violations were detected: {detected}"           
     
-    return f'<div>{html}</div>'
- 
-
-def feedback(text, violation=False):
-    
-    """Style HTML for feedback
-    according to presence of 
-    violation(s)
-    """
-    
-    if violation:
-        raw_html = '<div style="font-size: 28px;color:red;">' + str(
-            text) + '</div>'    
-    else:
-        raw_html = '<div style="font-size: 28px;">' + str(
-            text) + '</div>'
-    return raw_html
-
-
-def addContent(old_html, raw_html):
-    """Add html content together"""
-
-    old_html += raw_html
-    return old_html 
+    return reply 
     

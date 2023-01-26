@@ -35,7 +35,7 @@
     <div class="flash">{{ message }}</div>
     {% endfor %}        
 
-    <form method=post>
+    <form method=post id="myform" action="/jsresponse">
 	
 	  {{ form.yourmail.label }}
       {{ form.yourmail }}
@@ -45,13 +45,45 @@
 	  
       {{ form.mess.label }} 
       {{ form.mess }}
-      
+      <div>
       {{ form.submit }}
+	  </div>
     </form>
     {% endblock %}
+  
+  <p class="info" id="disableinfo"></p>
+  </div>
+  </div>
+ 
+<script type="text/javascript">
 
-  </div>
-  </div>
+var attempts = 3;
+var sb = document.getElementById("sbn");
+
+document.getElementById("myform").addEventListener("submit", function(e){
+  e.preventDefault();
+  let form = document.getElementById("myform");
+  let formData = new FormData(form); 
+  fetch("/jsresponse", 
+         {method: "post",
+          body: formData
+         })
+    .then((response) => {
+      return response.json();
+    })
+	.then((myJson) => {      
+      alert(myJson.feedback);	  
+	  if (myJson.result === 1){	    
+		attempts-= 1;
+	  }      
+      if (attempts < 1){
+	    sb.setAttribute('disabled', 'disabled');
+		sb.classList.add('forbidden');
+        document.getElementById("disableinfo").innerHTML = "You have sent 3 messages classified as toxic. Email function disabled.";		
+      }    	  
+    })
+  document.getElementById("myform").reset();
+})
+</script>
 </body>
-
 </html>

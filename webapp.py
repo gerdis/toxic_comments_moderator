@@ -2,10 +2,10 @@ import numpy as np
 import os
 import re
 from dotenv import load_dotenv
-from myutils import preprocess, embed, single_prediction, give_feedback
+from myutils import prepare, embed, single_prediction, give_feedback
 from keras.models import load_model
 import tensorflow as tf
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, g
 from flask_mail import Mail, Message
 from wtforms import Form, StringField, TextAreaField, validators, SubmitField
 from gensim.models import word2vec, KeyedVectors
@@ -33,7 +33,7 @@ class ReusableForm(Form):
     mess = TextAreaField("Your message: ", validators=[
                      validators.InputRequired()])
                         
-    submit = SubmitField("Submit")
+    submit = SubmitField("Submit", id="sbn")    
 
 def load_cnn():
     """
@@ -47,24 +47,29 @@ def load_cnn():
 def home():
     """Home page of app with form"""
     # Create form
-    form = ReusableForm(request.form)
-    
-    if request.method == 'POST' and form.validate():
-        # Extract information
-        mess = request.form['mess']
-        subject = request.form['subject']
-        yourmail = request.form['yourmail']
-        processed_comment = preprocess(mess)
-        embedding = embed(processed_comment)
-        prediction = single_prediction(embedding, model)[0]
-        #Generate reply
-        if not np.any(prediction):            
-            msg = Message(subject, sender=yourmail, recipients=['johndoe@mailtrap.io'])
-            msg.body = mess
-            mail.send(msg)       
-        return render_template('feedback.html', input=give_feedback(prediction, mess))        
-    
+    form = ReusableForm(request.form) 
     return render_template('index.html', form=form)
+
+@app.route("/jsresponse", methods=['GET', 'POST'])    
+def js_response():    
+    toxic = 0    
+    # Extract information
+    mess = request.form['mess']
+    subject = request.form['subject']
+    yourmail = request.form['yourmail']
+    processed_comment = prepare(mess)
+    embedding = embed(processed_comment)
+    prediction = single_prediction(embedding, model)[0]
+    #Generate reply
+    if not np.any(prediction):                    
+        msg = Message(subject, sender=yourmail, recipients=['johndoe@mailtrap.io'])
+        msg.body = mess
+        mail.send(msg)
+    else:
+        toxic = 1    
+    thefeedback = give_feedback(prediction, mess)    
+    return jsonify({"result": toxic, "feedback": thefeedback})
+
 
 if __name__ == "__main__":
     print(("* Loading AI model resources and starting server..."
