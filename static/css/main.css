@@ -3,15 +3,6 @@ body {
     padding: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #444;
-	/* background-image: url('/static/images/steve_johnson.jpg'); */
-    /* background-size: cover; */
-    /* content: ""; */
-    /* display: block; */
-    /* position: absolute; */
-    /* top: 0; */
-    /* left: 0; */
-    /* width: 100%; */
-    /* height: 100%; */
   }
   
 body::before {
@@ -61,22 +52,8 @@ body::before {
     border: 1px black;
     border-width: 4px;
     margin-top: 100px;	
-  }
-  
-  /* .container::before { */
-    /* background-image: url('/static/images/steve_johnson.jpg'); */
-    /* background-size: cover; */
-    /* content: ""; */
-    /* display: block; */
-    /* position: absolute; */
-    /* top: 0; */
-    /* left: 0; */
-    /* width: 100%; */
-    /* height: 100%; */
-    /* z-index: -2; */
-    /* opacity: 0.4; */
-  /* } */
-  
+  }  
+ 
   .info {
     color: red;	  
   }
@@ -219,8 +196,7 @@ form input#submit:hover{
   width: 70px;
   height: 30px;
   left: 265px;
-  bottom: 115px;
-  /*border: 3px solid #73AD21;*/  
+  bottom: 115px;    
 }
 
 .sclass {
@@ -240,7 +216,6 @@ form input#submit:hover{
   display: flex;
   justify-content: center;
   align-items: center;
-  /*border: 3px solid red;*/
   visibility: hidden;  
 }
 
@@ -306,21 +281,7 @@ form input#submit:hover{
 }
 
 .infobutton:hover .infotext{
-  /*background-color: MediumAquaMarine;
-  cursor: pointer;*/
   visibility: visible;
-}
-
-/*#feed {
-  position: absolute;
-  bottom: 50px;
-}*/
-
-#smallprint {
-  position: relative;
-  bottom: 10px;
-  font-size: 12px;
-  width: 500px;
 }
 
 /* Message flashing */

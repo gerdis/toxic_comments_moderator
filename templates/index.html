@@ -52,10 +52,7 @@
     </form>
     {% endblock %}
     <p id="filler"></p>
-    <p class="info" id="feed"></p>
-	<!-- <center> -->
-    <!-- <div id="smallprint"></div> -->
-	<!-- </center> -->  
+    <p class="info" id="feed"></p>  
   
   </div>
   </div>
@@ -94,8 +91,7 @@ document.getElementById("myform").addEventListener("submit", function(e){
 	  }      
       if (attempts < 1){
 	    sb.setAttribute('disabled', 'disabled');
-		sb.classList.add('forbidden');
-        /*document.getElementById("disableinfo").innerHTML = "You have sent 3 messages classified as toxic. Email function disabled.";*/		
+		sb.classList.add('forbidden');        		
       }    	  
     })
   document.getElementById("myform").reset();
