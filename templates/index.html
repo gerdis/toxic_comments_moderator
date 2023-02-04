@@ -19,7 +19,7 @@
   </div>
   <div class="container">
     <h1>
-      <center>Send John a message (AI moderated)</center>
+      <center>Send John an AI moderated message  <div class="infobutton">i<span class="infotext">Messages classified as toxic will be blocked. Submission of more than 2 such messenges will result in disabling of the email function.</span></div></center>
     </h1>
 
     {% block content %}
@@ -45,13 +45,18 @@
 	  
       {{ form.mess.label }} 
       {{ form.mess }}
-      <div>
-      {{ form.submit }}
+      <div class="submitcontainer">
+      {{ form.submit(class_="sclass")}}
+	  <div class="submitimg" id="submitimgid"><img src="/static/images/loading1.webp" alt="loading spinner" class="img" id="myimage"></div>
 	  </div>
     </form>
     {% endblock %}
+    <p id="filler"></p>
+    <p class="info" id="feed"></p>
+	<!-- <center> -->
+    <!-- <div id="smallprint"></div> -->
+	<!-- </center> -->  
   
-  <p class="info" id="disableinfo"></p>
   </div>
   </div>
  
@@ -59,30 +64,42 @@
 
 var attempts = 3;
 var sb = document.getElementById("sbn");
+var image = document.getElementById("submitimgid");
+
+function hideLoading() {
+  image.style.visibility = "hidden";
+  sb.value = "Submit";
+}
 
 document.getElementById("myform").addEventListener("submit", function(e){
   e.preventDefault();
   let form = document.getElementById("myform");
-  let formData = new FormData(form); 
+  let formData = new FormData(form);
+  sb.value = "";
+  image.style.visibility = "visible";
   fetch("/jsresponse", 
          {method: "post",
           body: formData
-         })
+         })    		 
     .then((response) => {
-      return response.json();
-    })
-	.then((myJson) => {      
-      alert(myJson.feedback);	  
+      image.style.visibility = "hidden";
+      sb.value = "Submit";	
+      return response.json();	  
+    })	
+	.then((myJson) => {
+	  document.getElementById("feed").style.color = myJson.color;
+      document.getElementById("feed").innerHTML = myJson.feedback;	  
 	  if (myJson.result === 1){	    
 		attempts-= 1;
 	  }      
       if (attempts < 1){
 	    sb.setAttribute('disabled', 'disabled');
 		sb.classList.add('forbidden');
-        document.getElementById("disableinfo").innerHTML = "You have sent 3 messages classified as toxic. Email function disabled.";		
+        /*document.getElementById("disableinfo").innerHTML = "You have sent 3 messages classified as toxic. Email function disabled.";*/		
       }    	  
     })
   document.getElementById("myform").reset();
+  document.getElementById("feed").innerHTML = ""; 
 })
 </script>
 </body>

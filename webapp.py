@@ -65,10 +65,12 @@ def js_response():
         msg = Message(subject, sender=yourmail, recipients=['johndoe@mailtrap.io'])
         msg.body = mess
         mail.send(msg)
+        thecolor = "black"
     else:
-        toxic = 1    
+        toxic = 1
+        thecolor = "red"        
     thefeedback = give_feedback(prediction, mess)    
-    return jsonify({"result": toxic, "feedback": thefeedback})
+    return jsonify({"result": toxic, "feedback": thefeedback, "color": thecolor})
 
 
 if __name__ == "__main__":

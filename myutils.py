@@ -1,5 +1,6 @@
 import numpy as np
 import random
+import json
 import re
 from gensim.models import word2vec, KeyedVectors
 import nltk
@@ -17,7 +18,8 @@ def prepare(comment):
   
 def embed(comment, vec=googlevecs):
     
-    wordnet_lemmatizer = WordNetLemmatizer()    
+    wordnet_lemmatizer = WordNetLemmatizer()
+    #splitcomment = comment.split()
     tk = TweetTokenizer()
     splitcomment = tk.tokenize(comment)
     commentlist = []
@@ -52,11 +54,11 @@ def give_feedback(prediction, comment):
                4: 'insult(s)', 5: 'identity hate'}          
       
     if not np.any(prediction):
-        reply = "Your message has been sent!"        
+        reply = "Thank you for your message!"        
     else:              
         detected = ", ".join([toxines[idx] for idx, p in enumerate(prediction) if p == True])
         reply = f"Your message could not be sent due to possible violations of our community guidelines. " \
-                f"The following violations were detected: {detected}"           
+                f"The following violations were detected: {detected}."           
     
     return reply 
     

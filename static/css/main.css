@@ -3,7 +3,30 @@ body {
     padding: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #444;
+	/* background-image: url('/static/images/steve_johnson.jpg'); */
+    /* background-size: cover; */
+    /* content: ""; */
+    /* display: block; */
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    /* width: 100%; */
+    /* height: 100%; */
   }
+  
+body::before {
+  	background-image: url('/static/images/steve_johnson.jpg');
+    background-size: cover;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	z-index: -2;
+    opacity: 0.4;
+}
   
   .content {
     display: flex;
@@ -19,37 +42,40 @@ body {
 	justify-content: top;
 	align-items: center;
 	margin-top: 100px;
+	color: black;
 	  
   }
    
     
   .container {
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
+	padding-top: 30px;
+	justify-content: top;	
     text-align: center;
     background-color: AliceBlue;
     width: 600px;
 	/*height: 490px;*/
-	height: 520px;
+	height: 560px;
     border: 1px black;
     border-width: 4px;
     margin-top: 100px;	
   }
   
-  .container::before {
-    background-image: url('/static/images/steve_johnson.jpg');
-    background-size: cover;
-    content: "";
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2;
-    opacity: 0.4;
-  }
+  /* .container::before { */
+    /* background-image: url('/static/images/steve_johnson.jpg'); */
+    /* background-size: cover; */
+    /* content: ""; */
+    /* display: block; */
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* z-index: -2; */
+    /* opacity: 0.4; */
+  /* } */
   
   .info {
     color: red;	  
@@ -68,7 +94,7 @@ body {
     font-family: none;
     color: darkslategray;
     display: block;
-    font-size: 24px;
+    font-size: 22px;
     margin-top: 8px;
     margin-bottom: 8px;
     margin-left: 0;
@@ -188,8 +214,113 @@ form input#submit:hover{
   background-image: linear-gradient(top, #dbdbdb, #cccccc);filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#dbdbdb, endColorstr=#cccccc);
 }
 
+.submitcontainer {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  left: 265px;
+  bottom: 115px;
+  /*border: 3px solid #73AD21;*/  
+}
+
+.sclass {
+  position: absolute;
+  height: 30px;
+  width: 70px;
+  top: 0px;
+  right: 0px;
+}
+
+.submitimg {
+  position: absolute;
+  width: 70px;
+  height: 30px;
+  top: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*border: 3px solid red;*/
+  visibility: hidden;  
+}
+
+.img {
+  width: 15px;
+  height:15px;
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+   0% {
+     transform: rotate(0deg);
+   }
+   100% {
+     transform: rotate(360deg);
+   }
+ }
+
 .forbidden:hover {
   cursor: not-allowed;
+}
+
+.infobutton {
+  position: relative;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+  font-size: 14px;
+  background-color: Teal;
+  color: white;
+  border: 2px solid Teal;
+  border-radius: 50px;  
+}
+
+.infobutton:hover {
+  background-color: MediumAquaMarine;
+}
+
+.infobutton .infotext {
+  visibility: hidden;
+  position: absolute;
+  z-index: 1;
+  top: 8px;
+  left: 166%;
+  width: 150px;
+  height: 110px;
+  background-color: Teal;
+  color: white;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  border-radius: 0px 6px 6px 6px;
+}
+
+.infobutton .infotext::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  right: 100%;
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: Teal Teal transparent transparent;
+}
+
+.infobutton:hover .infotext{
+  /*background-color: MediumAquaMarine;
+  cursor: pointer;*/
+  visibility: visible;
+}
+
+/*#feed {
+  position: absolute;
+  bottom: 50px;
+}*/
+
+#smallprint {
+  position: relative;
+  bottom: 10px;
+  font-size: 12px;
+  width: 500px;
 }
 
 /* Message flashing */

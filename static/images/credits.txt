@@ -2,3 +2,4 @@
 
 website background: photo by Steve Johnson
 
+loading spinner: canva
