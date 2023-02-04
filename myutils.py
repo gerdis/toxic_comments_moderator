@@ -54,7 +54,7 @@ def give_feedback(prediction, comment):
                4: 'insult(s)', 5: 'identity hate'}          
       
     if not np.any(prediction):
-        reply = "Thank you for your message!"        
+        reply = "Your message has been sent!"        
     else:              
         detected = ", ".join([toxines[idx] for idx, p in enumerate(prediction) if p == True])
         reply = f"Your message could not be sent due to possible violations of our community guidelines. " \
