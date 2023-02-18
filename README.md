@@ -4,10 +4,9 @@ A simple web application demonstrating how a sentiment analysis model can be dep
 
 The model, a Convolutional Neural Network, was trained on the *toxic comments* dataset using Google's pre-trained
 300-dimensional vector embeddings. 
-During training, a Keras generator was used to generate batches so that no padding was needed. 
+During training, a Keras generator was used to generate batches so that sequences of varying length could be processed without padding. 
 
-The code for the model and cross validation results can be found in *model_resources/ToxicCommentsProjectCrossVal.ipynb* 
-(I might re-train the model using a slightly different architecture).
+The code for the model training process, as well as test results, can be found in *model_resources/training_toxic_new.ipynb*.
 
 # Instructions for testing 
 
@@ -52,7 +51,13 @@ The application will also inform you which types/severity levels of "toxicity"
 Otherwise, you should receive a notification that your message was sent, and find the email in your inbox.
 
 If you need to get a lot of "toxicity" out of your system, feel free to send John multiple nasty messages - however, 
-you shouldn't be able to send more than 3. 
+you shouldn't be able to send more than 3.
+
+# References
+
+Konstantinos Sechidis, Grigorios Tsoumakas, and Ioannis P. Vlahavas. 2011. On the Stratification of Multi-label Data. 
+In *Proceedings of the Machine Learning and Knowledge Discovery in Databases – European Conference, ECML PKDD (part III)*, 
+pages 145–158, Athens, Greece.
 
 # Credits
 

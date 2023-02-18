@@ -1,3 +1,4 @@
 .env
 *.bin
+backup/
 __pycache__/
