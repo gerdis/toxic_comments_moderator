@@ -40,7 +40,7 @@ def load_cnn():
     load pre-trained model
     """
     global model
-    model = load_model('model_resources/New_toxic_CNN.h5')
+    model = load_model('model_resources/New_toxic_CNN_2.h5')
     
 # Home page
 @app.route("/", methods=['GET', 'POST'])
