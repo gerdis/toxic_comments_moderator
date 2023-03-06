@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+document.getElementById("feed").style.color = '{{ color }}';
+document.getElementById("feed").innerHTML = '{{ feedback }}';
+
+var sb = document.getElementById("sbn");
+var image = document.getElementById("submitimgid");
+var invit = document.getElementById("invi");
+var attempts = {{ attempts }};
+
+sb.addEventListener("click", function(){
+  sb.value = "",
+  image.style.visibility = "visible";
+  document.getElementById("feed").innerHTML = "";  
+})
+
+const forminputs = document.querySelectorAll("input, textarea"); 
+
+if (attempts < 1){
+  for (let i = 0; i < forminputs.length; i++){
+    forminputs[i].setAttribute('disabled', 'disabled');
+	forminputs[i].classList.add('forbidden');
+  }
+  invit.style.color = "LightGrey";
+};
+</script>
+{% endblock %}

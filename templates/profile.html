@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+var sb = document.getElementById("sbn");
+var image = document.getElementById("submitimgid");
+var invit = document.getElementById("invi");
+var attempts = {{ attempts }};
+
+const forminputs = document.querySelectorAll("input, textarea"); 
+
+if (attempts < 1){
+  for (let i = 0; i < forminputs.length; i++){
+    forminputs[i].setAttribute('disabled', 'disabled');
+	forminputs[i].classList.add('forbidden');
+  }
+  invit.style.color = "LightGrey";
+};
+
+const errormessages = document.getElementsByClassName("flash");
+window.addEventListener("load", activateErrorElements);
+
+function activateErrorElements(){
+  for (let i = 0; i < errormessages.length; i++){
+    errormessages[i].style.visibility = "visible";
+  }
+}
+
+sb.addEventListener("click", function(){  
+  for (let i = 0; i < errormessages.length; i++){
+    errormessages[i].style.visibility = "hidden";
+  }
+  sb.value = "";
+  image.style.visibility = "visible";
+})
+</script>
+{% endblock %}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ name }} Doe</title>
+  <link rel="stylesheet" href="/static/css/main.css"> 
+</head>
+
+<body>
+  <h1><a href="../">Home</a></h1>
+  <div class="content">
+  <div class="personal">  
+    <img src="/static/images/icons8_customer.png" alt="icon depicting a person" style="width:200px;height:200px;">
+	<h3>{{ name }} Doe, {{ prof }}</h3>
+	<ul>
+         <li>some info about {{ name }}</li>
+         <li>some more info</li>
+         <li>yet more info</li>
+    </ul>
+  </div>
+  <div class="container">
+    <h1 id="invi">
+      <center>Send {{ name }} an AI moderated message  <div class="infobutton">i<span class="infotext">Messages classified as toxic will be blocked. Submission of more than 2 such messenges will result in disabling of the email function.</span></div></center>
+    </h1>	       
+    <div id="dist1"></div>
+    <form method=post id="myform" action="" novalidate>	
+	  {{ form.csrf_token }}
+      {{ form.yourmail(placeholder=form.yourmail.description) }}
+	  <div class="distcontainer">
+	  {% for message in form.yourmail.errors %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %}
+	  </div>
+	
+	  {{ form.subject(placeholder=form.subject.description) }}
+	  <div class="distcontainer">
+      {% for message in form.subject.errors %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %}
+	  </div>	  
+       
+      {{ form.mess(placeholder=form.mess.description) }}	  
+	  {% for message in form.mess.errors %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %}
+      
+	  <div class="submitcontainer">
+      {{ form.submit(class_="sclass")}}
+	  <div class="submitimg" id="submitimgid"><img src="/static/images/loading1.webp" alt="loading spinner" class="img" id="myimage"></div>
+	  </div>
+    </form>  
+    <div id="dist2"></div>	
+    <p class="info" id="feed"></p>  
+  </div>
+  </div>  
+  {% block content %}
+  {% endblock %}  
+</body>
+</html>

@@ -41,7 +41,7 @@ def single_prediction(embedding, model):
     prediction = np.round(model.predict(model_input, steps=1))
     return prediction
     
-def give_feedback(prediction, comment):
+def givve_feedback(prediction):
 
     """
     generate html with reply depending on 
