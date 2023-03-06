@@ -15,9 +15,15 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-	z-index: -2;
-    opacity: 0.4;
+	z-index: -2;    
+	opacity: 0.3;
 }
+  .homecontent {
+    display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+  }
   
   .content {
     display: flex;
@@ -47,25 +53,15 @@ body::before {
     text-align: center;
     background-color: AliceBlue;
     width: 600px;
-	/*height: 490px;*/
-	height: 560px;
+	height: 480px;
     border: 1px black;
     border-width: 4px;
     margin-top: 100px;	
   }  
  
   .info {
-    color: red;	  
-  }
-   
-  div.jumbo {
-    padding: 10px 0 30px 0;
-    background-color: #eeeeee;
-    -webkit-border-radius: 6px;
-       -moz-border-radius: 6px;
-            border-radius: 6px;
-  }
-   
+    color: red;
+  } 
 
   h1 { 
     font-family: none;
@@ -95,15 +91,6 @@ body::before {
     color: black;
   }
 
-form label {
-  font-family: initial;
-  color: darkblue;
-  font-size: 18px;
-  font-weight: bold;
-  display: block;
-  padding: 10px 0;
-}
-
 form input#yourmail {
   height: 25px;
   width: 400px;
@@ -114,7 +101,7 @@ form input#yourmail {
   border: 1px solid #cccccc;
   padding: 5px;
   font-size: 18px;
-  margin: 12px;
+  margin: 3px;
 }
  
 form input#subject {
@@ -127,7 +114,7 @@ form input#subject {
   border: 1px solid #cccccc;
   padding: 5px;
   font-size: 18px;
-  margin: 12px;
+  margin: 3px;
 }
 
 form textarea#mess {
@@ -139,21 +126,8 @@ form textarea#mess {
   border-radius: 3px;
   border: 1px solid #cccccc;
   padding: 5px;
-  font-size: 18px;
-  margin: 12px;
-}
- 
-form textarea#message {
-  width: 500px;
-  height: 100px;
-  background-color: #fafafa;
-  -webkit-border-radius: 3px;
-     -moz-border-radius: 3px;
-          border-radius: 3px;
-  border: 1px solid #cccccc;
-  margin-bottom: 10px;
-  padding: 5px;
-  font-size: 1.1em;
+  font-size: 18px; 
+  margin: 3px;
 }
  
 form input#submit {
@@ -196,7 +170,7 @@ form input#submit:hover{
   width: 70px;
   height: 30px;
   left: 265px;
-  bottom: 115px;    
+  bottom: 120px;  
 }
 
 .sclass {
@@ -243,15 +217,15 @@ form input#submit:hover{
   display: inline-block;
   height: 18px;
   width: 18px;
-  font-size: 14px;
-  background-color: Teal;
+  font-size: 14px;  
+  background-color: Red;
   color: white;
-  border: 2px solid Teal;
+  border: 2px solid Red;
   border-radius: 50px;  
 }
 
-.infobutton:hover {
-  background-color: MediumAquaMarine;
+.infobutton:hover {  
+  background-color: Tomato;
 }
 
 .infobutton .infotext {
@@ -261,8 +235,8 @@ form input#submit:hover{
   top: 8px;
   left: 166%;
   width: 150px;
-  height: 110px;
-  background-color: Teal;
+  height: 110px;  
+  background-color: Tomato;
   color: white;
   text-align: center;
   padding: 5px 5px 5px 5px;
@@ -276,19 +250,36 @@ form input#submit:hover{
   right: 100%;
   margin-top: -5px;
   border-width: 5px;
-  border-style: solid;
-  border-color: Teal Teal transparent transparent;
+  border-style: solid;  
+  border-color: Tomato Tomato transparent transparent;
 }
 
 .infobutton:hover .infotext{
   visibility: visible;
 }
 
+#dist1 {
+	height: 16px;
+}
+
+#dist2 {
+	height: 55px;
+}
+
+.distcontainer {
+	height: 26px;
+}
+
 /* Message flashing */
 .flash {
-    background-color: #FBB0B0;
-    padding: 10px;
-    width: 400px;
-    display: table;
-    margin: auto;
+    /* background-color: #FBB0B0; */
+	background-color: red;
+	color: white;
+	padding: 2px;	
+    width: 400px;    
+    margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 14px;
   }
